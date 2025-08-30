@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         #nav, #hero, #dock {
-            display:none;
+            display:
         }
     </style>
 </head>
@@ -23,8 +23,8 @@
             </div>
         </div>
         <div class="grid grid-cols-1">
-            <div id="doctorName" class="text-lg font-semibold"></div>
-            <div id="doctorDep" class="text-base font-normal"></div>
+            <div id="doctorName" class="text-lg font-semibold">name</div>
+            <div id="doctorDep" class="text-base font-normal">department</div>
         </div>
     </div>
 
@@ -80,7 +80,7 @@
         const logInLIFF = async () => {
             await liff.init({ liffId: "2007211330-ykKaQeJg" })
             if (liff.isLoggedIn()) {
-                nav.style.display = "block"
+                nav.style.display = "block flex";
                 hero.style.display = "block"
                 dock.style.display = "block"
                 const profile = await liff.getProfile()
