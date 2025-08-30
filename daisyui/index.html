@@ -8,11 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        #nav {
-            
-        }
-        #dock {
-            
+        #nav, #hero, #dock {
+            display:none;
         }
     </style>
 </head>
@@ -52,12 +49,15 @@
 
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
+        nav = document.getElementById("nav")
+        hero = document.getElementById("hero")
+        dock = document.getElementById("dock")
         uploadBtn = document.getElementById("uploadBtn")
         statusBtn = document.getElementById("statusBtn")
         incomeBtn = document.getElementById("incomeBtn")
         profilePic = document.getElementById("profilePic")
-        doctorName = document.getElementById("doctorName");
-        doctorDep = document.getElementById("doctorDep");
+        doctorName = document.getElementById("doctorName")
+        doctorDep = document.getElementById("doctorDep")
 
         uploadBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
@@ -80,6 +80,9 @@
         const logInLIFF = async () => {
             await liff.init({ liffId: "2007211330-ykKaQeJg" })
             if (liff.isLoggedIn()) {
+                nav.style.display = "block"
+                hero.style.display = "block"
+                dock.style.display = "block"
                 const profile = await liff.getProfile()
                 profilePic.src = profile.pictureUrl
 
