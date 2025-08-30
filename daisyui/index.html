@@ -18,8 +18,8 @@
             </div>
         </div>
         <div class="grid grid-cols-1">
-            <div id="profileName" class="text-lg font-semibold">Name</div>
-            <div class="text-base font-normal">Department</div>
+            <div id="doctorName" class="text-lg font-semibold"></div>
+            <div id="doctorDep" class="text-base font-normal"></div>
         </div>
     </div>
 
@@ -46,7 +46,8 @@
         statusBtn = document.getElementById("statusBtn")
         incomeBtn = document.getElementById("incomeBtn")
         profilePic = document.getElementById("profilePic")
-        profileName = document.getElementById("profileName");
+        doctorName = document.getElementById("doctorName");
+        doctorDep = document.getElementById("doctorDep");
 
         uploadBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
@@ -71,7 +72,7 @@
             if (liff.isLoggedIn()) {
                 const profile = await liff.getProfile()
                 profilePic.src = profile.pictureUrl
-                profileName.innerText = profile.displayName;
+
             } else {
                 liff.login()
             }
