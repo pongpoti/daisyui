@@ -14,12 +14,12 @@
     <div id="navBar" class="navbar bg-base-100 shadow-sm outline-2 sticky top-0 z-10 flex justify-center p-4">
         <div class="avatar pr-4">
             <div class="w-16 rounded-full">
-                <img src="https://img.daisyui.com/images/profile/demo/batperson@192.webp" />
+                <img id="profilePic" alt="profilePic" src="https://profile.line-scdn.net/abcdefghijklmn" />
             </div>
         </div>
         <div class="grid grid-cols-1">
-            <p>name</p>
-            <p>department</p>
+            <div id="profileName" class="text-lg font-semibold">Name</div>
+            <div class="text-base font-normal">Department</div>
         </div>
     </div>
 
@@ -40,10 +40,13 @@
         <button id="incomeBtn" class="text-md text-base-content hover:text-accent-content">INCOME</button>
     </div>
 
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
         uploadBtn = document.getElementById("uploadBtn")
         statusBtn = document.getElementById("statusBtn")
         incomeBtn = document.getElementById("incomeBtn")
+        profilePic = document.getElementById("profilePic")
+        profileName = document.getElementById("profileName");
 
         uploadBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
@@ -62,6 +65,17 @@
             uploadBtn.classList.remove("dock-active")
             statusBtn.classList.remove("dock-active")
         })
+
+        const logInLIFF = async () => {
+            await liff.init({ liffId: "2007211330-ykKaQeJg" })
+            if (liff.isLoggedIn()) {
+                const profile = await liff.getProfile()
+                profilePic.src = profile.pictureUrl
+                profileName.innerText = profile.displayName;
+            } else {
+                liff.login()
+            }
+        }
     </script>
 
 </body>
