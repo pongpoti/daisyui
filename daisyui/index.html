@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        #nav, #hero, #dock {
+        #nav, #dock {
             display:none;
         }
     </style>
@@ -28,8 +28,8 @@
         </div>
     </div>
 
-    <div id="hero" class="hero bg-base-300 min-h-screen pt-8 md:pt-16 lg:pt-24 xl:pt24 items-start">
-        <div class="hero-content grid grid-cols-1">
+    <div class="hero bg-base-300 min-h-screen pt-8 md:pt-16 lg:pt-24 xl:pt24 items-start">
+        <div id="hero" class="hero-content grid grid-cols-1">
 
             <div class="card bg-base-100 card-lg w-xs md:w-lg lg:w-2xl xl:w-4xl border-black border">
                 <div class="card-body">
@@ -81,8 +81,8 @@
             await liff.init({ liffId: "2007211330-ykKaQeJg" })
             if (liff.isLoggedIn()) {
                 nav.style.display = "block flex";
-                hero.style.display = "block"
-                dock.style.display = "block"
+                hero.style.display = "block flex";
+                dock.style.display = "block flex";
                 const profile = await liff.getProfile()
                 profilePic.src = profile.pictureUrl
 
