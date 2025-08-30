@@ -11,8 +11,12 @@
 
 <body>
 
-    <div class="hero bg-base-300 min-h-screen content-start items-start">
-        <div class="hero-content grid grid-cols-1 content-start items-start">
+    <div class="navbar bg-base-100 shadow-sm outline-2 sticky top-0 z-10">
+        <a class="btn btn-ghost text-xl">daisyUI</a>
+    </div>
+
+    <div class="hero bg-base-300 min-h-screen items-start">
+        <div class="hero-content grid grid-cols-1">
             <div class="card bg-base-100 card-xl w-xl">
                 <div class="card-body">
                     <h2 class="card-title">title</h2>
@@ -41,16 +45,34 @@
     </div>
 
     <div class="dock outline-2">
-        <button>
-            <span class="dock-label">Home</span>
-        </button>
-        <button class="dock-active">
-            <span class="dock-label">Inbox</span>
-        </button>
-        <button>
-            <span class="dock-label">Settings</span>
-        </button>
+        <button id="uploadBtn" class="text-md text-base-content hover:text-accent-content">UPLOAD</button>
+        <button id="statusBtn" class="text-md text-base-content hover:text-accent-content">STATUS</button>
+        <button id="incomeBtn" class="text-md text-base-content hover:text-accent-content">INCOME</button>
     </div>
+
+    <script>
+        uploadBtn = document.getElementById("uploadBtn")
+        statusBtn = document.getElementById("statusBtn")
+        incomeBtn = document.getElementById("incomeBtn")
+
+        uploadBtn.addEventListener("click", function (e) {
+            this.classList.add("dock-active")
+            statusBtn.classList.remove("dock-active")
+            incomeBtn.classList.remove("dock-active")
+        })
+
+        statusBtn.addEventListener("click", function (e) {
+            this.classList.add("dock-active")
+            uploadBtn.classList.remove("dock-active")
+            incomeBtn.classList.remove("dock-active")
+        })
+
+        incomeBtn.addEventListener("click", function (e) {
+            this.classList.add("dock-active")
+            uploadBtn.classList.remove("dock-active")
+            statusBtn.classList.remove("dock-active")
+        })
+    </script>
 
 </body>
 
