@@ -10,7 +10,8 @@
     <style>
         #nav,
         #dock,
-        #card {
+        #card,
+        #logo {
             display: none;
         }
     </style>
@@ -195,9 +196,8 @@
         const logInLIFF = async () => {
             await liff.init({ liffId: "2007211330-ykKaQeJg" })
             if (liff.isLoggedIn()) {
-                logo.style.display = "none"
                 nav.style.display = "block flex"
-                card.style.display = "block flex"
+                logo.style.display = "block flex"
                 dock.style.display = "block flex"
                 const profile = await liff.getProfile()
                 profilePic.src = profile.pictureUrl
