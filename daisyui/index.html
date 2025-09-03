@@ -35,6 +35,8 @@
 
         <div id="content" class="hero-content grid grid-cols-1">
 
+            <div id="loading" class="loading loading-dots loading-xl"></div>
+
             <div id="logo" class="grid grid-cols-3">
                 <svg class="size-20 md:size-40 lg:size-60" viewBox="0 0 48 48">
                     <defs>
@@ -167,6 +169,7 @@
         nav = document.getElementById("nav")
         hero = document.getElementById("hero")
         content = document.getElementById("content")
+        loading = document.getElementById("loading")
         logo = document.getElementById("logo")
         card = document.getElementById("card")
         dock = document.getElementById("dock")
@@ -196,6 +199,7 @@
         const logInLIFF = async () => {
             await liff.init({ liffId: "2007211330-ykKaQeJg" })
             if (liff.isLoggedIn()) {
+                loading.style.display = "none"
                 nav.style.display = "block flex"
                 logo.style.display = "block flex"
                 dock.style.display = "block flex"
