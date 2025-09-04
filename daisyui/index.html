@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        #nav, #dock, #card, #profilePic_box_real {
+        #nav, #dock, #card {
             display: none;
         }
     </style>
@@ -19,8 +19,7 @@
     <div id="nav" class="navbar bg-base-100 outline-2 sticky top-0 z-10 flex justify-center p-4">
         <div></div>
         <div class="avatar pr-4">
-            <div id="profilePic_box_skel" class="skeleton w-16 rounded-full"></div>
-            <div id="profilePic_box_real" class="w-16 rounded-full">
+            <div class="w-16 rounded-full">
                 <img id="profilePic" alt="profilePic" />
             </div>
         </div>
@@ -34,8 +33,10 @@
         <div id="loading" class="loading loading-dots loading-xl"></div>
         <div id="card" class="card bg-base-100 card-lg w-xs md:w-lg lg:w-2xl xl:w-4xl border-black border">
                 <div class="card-body">
-                    <h2 class="card-title">title</h2>
-                    <p>content</p>
+                    <h2 class="card-title text-center">UPLOAD</h2>
+                    <form>
+                        <input type="file" class="file-input file-input-ghost file-input-sm" />
+                    </form>
                 </div>
         </div>
     </div>
@@ -50,9 +51,6 @@
     <script>
         nav = document.getElementById("nav")
         dock = document.getElementById("dock")
-
-        profilePic_box_skel = document.getElementById("profilePic_box_skel")
-        profilePic_box_real = document.getElementById("profilePic_box_real")
 
         content = document.getElementById("content")
         loading = document.getElementById("loading")
@@ -86,8 +84,6 @@
             if (liff.isLoggedIn()) {
                 loading.style.display = "none"
                 nav.style.display = "flex"
-                profilePic_box_skel.style.display = "none"
-                profilePic_box_real.style.display = "flex"
                 dock.style.display = "flex"
                 content.classList.remove("justify-center")
                 content.classList.add("pt-8", "md:pt-12", "lg:pt-16", "xl:pt-20")
