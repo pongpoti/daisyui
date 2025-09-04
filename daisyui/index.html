@@ -8,14 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        #nav, #dock, #card {
+        #nav, #dock, #first {
             display: none;
         }
     </style>
 </head>
 
 <body>
-
     <div id="nav" class="navbar bg-base-100 outline-2 sticky top-0 z-10 flex justify-center p-4">
         <div></div>
         <div class="avatar pr-4">
@@ -31,12 +30,19 @@
 
     <div id="content" class="bg-base-300 min-h-screen flex flex-col items-center justify-center">
         <div id="loading" class="loading loading-dots loading-xl"></div>
-        <div id="card" class="card bg-base-100 card-lg w-xs md:w-lg lg:w-2xl xl:w-4xl border-black border">
+        <div id="first" class="card bg-base-100 card-lg w-xs md:w-lg lg:w-2xl xl:w-4xl border-black border">
                 <div class="card-body flex flex-col items-center">
-                    <h2 class="card-title text-center">UPLOAD</h2>
-                    <form>
-                        <input type="file" class="file-input file-input-ghost file-input-md lg:file-input-lg" />
-                    </form>
+                    <fieldset class="fieldset">
+                        <legend class="fieldset-legend">Upload file</legend>
+                        <select id="first_select" title="select" class="select">
+                            <option disabled selected>Choose month</option>
+                            <option>month 1</option>
+                            <option>month 2</option>
+                            <option>month 3</option>
+                        </select>
+                        <input id="first_input" placeholder="input" type="file" class="file-input file-input-ghost file-input-md lg:file-input-lg" />
+                        <button id="first_submit" class="btn">submit</button>
+                    </fieldset>
                 </div>
         </div>
     </div>
@@ -54,7 +60,7 @@
 
         content = document.getElementById("content")
         loading = document.getElementById("loading")
-        card = document.getElementById("card")
+        first = document.getElementById("first")
        
         uploadBtn = document.getElementById("uploadBtn")
         statusBtn = document.getElementById("statusBtn")
