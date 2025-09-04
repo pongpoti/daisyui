@@ -33,7 +33,7 @@
 
     <div id="hero" class="hero bg-base-300 min-h-screen">
 
-        <div id="content" class="hero-content flex flex-col items-start">
+        <div id="content" class="hero-content grid grid-cols-1">
 
             <div id="loading" class="loading loading-dots loading-xl"></div>
 
@@ -201,7 +201,7 @@
             if (liff.isLoggedIn()) {
                 loading.style.display = "none"
                 nav.style.display = "block flex"
-                logo.style.display = "inline grid"
+                logo.style.display = "block grid"
                 dock.style.display = "block flex"
                 const profile = await liff.getProfile()
                 profilePic.src = profile.pictureUrl
