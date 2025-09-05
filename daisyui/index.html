@@ -32,6 +32,8 @@
         <div id="loading" class="loading loading-dots loading-xl"></div>
         <div id="first" class="card bg-base-100 card-lg w-xs md:w-lg lg:w-2xl xl:w-4xl border-black border">
                 <div class="card-body flex flex-col items-center">
+                    <iframe data-tally-src="https://tally.so/embed/31LarW?hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="221" frameborder="0" marginheight="0" marginwidth="0" title="null"></iframe>
+                <!--
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend">Upload file</legend>
                         <select id="first_select" title="select" class="select">
@@ -43,6 +45,7 @@
                         <input id="first_input" placeholder="input" type="file" class="file-input file-input-ghost file-input-md lg:file-input-lg" />
                         <button id="first_submit" class="btn">submit</button>
                     </fieldset>
+                -->
                 </div>
         </div>
     </div>
@@ -54,6 +57,7 @@
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
     <script>
         nav = document.getElementById("nav")
         dock = document.getElementById("dock")
