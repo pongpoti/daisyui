@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        #nav, #dock, #first {
+        #nav, #dock, #first, #iframe {
             display: none;
         }
     </style>
@@ -30,9 +30,9 @@
 
     <div id="content" class="bg-base-300 min-h-screen flex flex-col items-center justify-center">
         <div id="loading" class="loading loading-dots loading-xl"></div>
+        <iframe id="iframe"data-tally-src="https://tally.so/embed/31LarW?hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="351" frameborder="0" marginheight="0" marginwidth="0" title="P4P - Upload"></iframe>
         <div id="first" class="card bg-base-100 card-lg w-xs md:w-lg lg:w-2xl xl:w-4xl border-black border">
                 <div class="card-body flex flex-col items-center">
-                    <iframe data-tally-src="https://tally.so/embed/31LarW?hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="351" frameborder="0" marginheight="0" marginwidth="0" title="P4P - Upload"></iframe>
                 <!--
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend">Upload file</legend>
@@ -65,6 +65,7 @@
         content = document.getElementById("content")
         loading = document.getElementById("loading")
         first = document.getElementById("first")
+        iframe = document.getElementById("iframe")
        
         uploadBtn = document.getElementById("uploadBtn")
         statusBtn = document.getElementById("statusBtn")
@@ -97,7 +98,8 @@
                 dock.style.display = "flex"
                 content.classList.remove("justify-center")
                 content.classList.add("pt-8", "md:pt-12", "lg:pt-16", "xl:pt-20")
-                first.style.display = "flex"
+                //first.style.display = "flex"
+                iframe.style.display = "block"
                 const profile = await liff.getProfile()
                 profilePic.src = profile.pictureUrl
 
