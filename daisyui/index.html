@@ -79,19 +79,25 @@
             this.classList.add("dock-active")
             this.disabled = true
             statusBtn.classList.remove("dock-active")
+            statusBtn.disabled = false
             incomeBtn.classList.remove("dock-active")
+            incomeBtn.disabled = false
         })
         statusBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
             this.disabled = true
             uploadBtn.classList.remove("dock-active")
+            uploadBtn.disabled = false
             incomeBtn.classList.remove("dock-active")
+            incomeBtn.disabled = false
         })
         incomeBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
             this.disabled = true
             uploadBtn.classList.remove("dock-active")
+            uploadBtn.disabled = false
             statusBtn.classList.remove("dock-active")
+            statusBtn.disabled = false
         })
 
         const logInLIFF = async () => {
