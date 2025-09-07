@@ -30,7 +30,7 @@
 
     <div id="content" class="bg-base-300 min-h-screen flex flex-col items-center justify-center">
         <div id="loading" class="loading loading-dots loading-xl"></div>
-        <iframe id="iframe"data-tally-src="https://tally.so/embed/31LarW?hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="351" frameborder="0" marginheight="0" marginwidth="0" title="P4P - Upload"></iframe>
+        <iframe id="iframe" data-tally-src="https://tally.so/embed/31LarW?hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="351" frameborder="0" marginheight="0" marginwidth="0" title="P4P - Upload"></iframe>
 
         <div id="first" class="card bg-base-100 card-lg w-xs md:w-lg lg:w-2xl xl:w-4xl border-black border">
                 <div class="card-body flex flex-col items-center">
@@ -52,9 +52,9 @@
     </div>
 
     <div id="dock" class="dock bg-base-100 outline-2">
-        <button id="uploadBtn" class="text-md text-base-content">UPLOAD</button>
         <button id="statusBtn" class="text-md text-base-content">STATUS</button>
-        <button id="incomeBtn" class="text-md text-base-content">INCOME</button>
+        <button id="uploadBtn" class="text-md text-base-content">UPLOAD</button>
+        <button id="signBtn" class="text-md text-base-content">SIGN</button>
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
@@ -68,36 +68,39 @@
         first = document.getElementById("first")
         iframe = document.getElementById("iframe")
        
-        uploadBtn = document.getElementById("uploadBtn")
         statusBtn = document.getElementById("statusBtn")
-        incomeBtn = document.getElementById("incomeBtn")
+        uploadBtn = document.getElementById("uploadBtn")
+        signBtn = document.getElementById("signBtn")
         profilePic = document.getElementById("profilePic")
         doctorName = document.getElementById("doctorName")
         doctorDep = document.getElementById("doctorDep")
 
-        uploadBtn.addEventListener("click", function (e) {
-            this.classList.add("dock-active")
-            this.disabled = true
-            statusBtn.classList.remove("dock-active")
-            statusBtn.disabled = false
-            incomeBtn.classList.remove("dock-active")
-            incomeBtn.disabled = false
-        })
         statusBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
             this.disabled = true
             uploadBtn.classList.remove("dock-active")
             uploadBtn.disabled = false
-            incomeBtn.classList.remove("dock-active")
-            incomeBtn.disabled = false
+            signBtn.classList.remove("dock-active")
+            signBtn.disabled = false
+            iframe.style.display = "none"
         })
-        incomeBtn.addEventListener("click", function (e) {
+        uploadBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
             this.disabled = true
-            uploadBtn.classList.remove("dock-active")
-            uploadBtn.disabled = false
             statusBtn.classList.remove("dock-active")
             statusBtn.disabled = false
+            signBtn.classList.remove("dock-active")
+            signBtn.disabled = false
+            iframe.style.display = "block"
+        })
+        signBtn.addEventListener("click", function (e) {
+            this.classList.add("dock-active")
+            this.disabled = true
+            statusBtn.classList.remove("dock-active")
+            statusBtn.disabled = false
+            uploadBtn.classList.remove("dock-active")
+            uploadBtn.disabled = false
+            iframe.style.display = "none"
         })
 
         const logInLIFF = async () => {
