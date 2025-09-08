@@ -77,30 +77,33 @@
 
         statusBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
-            this.disabled = true
+            //this.disabled = true
             uploadBtn.classList.remove("dock-active")
-            uploadBtn.disabled = false
+            //uploadBtn.disabled = false
             signBtn.classList.remove("dock-active")
-            signBtn.disabled = false
+            //signBtn.disabled = false
             iframe.style.display = "none"
+            e.preventDefault()
         })
         uploadBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
-            this.disabled = true
+            //this.disabled = true
             statusBtn.classList.remove("dock-active")
-            statusBtn.disabled = false
+            //statusBtn.disabled = false
             signBtn.classList.remove("dock-active")
-            signBtn.disabled = false
+            //signBtn.disabled = false
             iframe.style.display = "block"
+            e.preventDefault()
         })
         signBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
-            this.disabled = true
+            //this.disabled = true
             statusBtn.classList.remove("dock-active")
-            statusBtn.disabled = false
+            //statusBtn.disabled = false
             uploadBtn.classList.remove("dock-active")
-            uploadBtn.disabled = false
+            //uploadBtn.disabled = false
             iframe.style.display = "none"
+            e.preventDefault()
         })
 
         const logInLIFF = async () => {
