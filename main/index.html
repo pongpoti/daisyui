@@ -77,31 +77,24 @@
 
         statusBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
-            //this.disabled = true
             uploadBtn.classList.remove("dock-active")
-            //uploadBtn.disabled = false
             signBtn.classList.remove("dock-active")
-            //signBtn.disabled = false
             iframe.style.display = "none"
             e.preventDefault()
         })
+
         uploadBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
-            //this.disabled = true
             statusBtn.classList.remove("dock-active")
-            //statusBtn.disabled = false
             signBtn.classList.remove("dock-active")
-            //signBtn.disabled = false
             iframe.style.display = "block"
             e.preventDefault()
         })
+        
         signBtn.addEventListener("click", function (e) {
             this.classList.add("dock-active")
-            //this.disabled = true
             statusBtn.classList.remove("dock-active")
-            //statusBtn.disabled = false
             uploadBtn.classList.remove("dock-active")
-            //uploadBtn.disabled = false
             iframe.style.display = "none"
             e.preventDefault()
         })
