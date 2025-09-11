@@ -100,6 +100,7 @@
         doctorDep = document.getElementById("doctorDep")
 
         statusBtn.addEventListener("click", function (e) {
+            loadMain.style.display = "none"
             this.classList.add("dock-active")
             uploadBtn.classList.remove("dock-active")
             signBtn.classList.remove("dock-active")
@@ -117,6 +118,7 @@
         })
 
         signBtn.addEventListener("click", function (e) {
+            loadMain.style.display = "none"
             this.classList.add("dock-active")
             statusBtn.classList.remove("dock-active")
             uploadBtn.classList.remove("dock-active")
