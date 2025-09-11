@@ -25,9 +25,12 @@
                 <img id="profilePic" alt="profilePic" />
             </div>
         </div>
-        <div class="grid grid-cols-1">
-            <div id="doctorName" class="text-lg font-semibold">name</div>
-            <div id="doctorDep" class="text-base font-normal">department</div>
+        <div class="flex flex-col">
+            <div class="flex flex-row">
+                <p id="profileName" class="text-lg font-semibold"></p>
+                <kdb class="kbd ml-2 mt-1">signed in : </kdb>
+            </div>
+            <div></div>
         </div>
     </div>
 
@@ -102,7 +105,7 @@
         uploadBtn = document.getElementById("uploadBtn")
         signBtn = document.getElementById("signBtn")
         profilePic = document.getElementById("profilePic")
-        doctorName = document.getElementById("doctorName")
+        profileName = document.getElementById("profileName")
         doctorDep = document.getElementById("doctorDep")
 
         statusBtn.addEventListener("click", function (e) {
@@ -139,6 +142,7 @@
                 content.classList.add("pt-8", "md:pt-12", "lg:pt-16", "xl:pt-20")
                 const profile = await liff.getProfile()
                 profilePic.src = profile.pictureUrl
+                profileName.innerText = profile.displayName
 
             } else {
                 liff.login()
