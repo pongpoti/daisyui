@@ -18,19 +18,27 @@
 </head>
 
 <body>
-    <div id="nav" class="navbar bg-base-100 outline-2 sticky top-0 z-10 flex justify-center p-4">
-        <div></div>
-        <div class="avatar pr-4">
-            <div class="w-16 rounded-full">
-                <img id="profilePic" alt="profilePic" />
+    <div id="nav" class="navbar bg-base-100 shadow-sm outline-2 sticky top-0 z-10">
+        <div class="navbar-start">
+        </div>
+        <div class="navbar-center">
+            <div class="avatar pr-4">
+                <div class="w-16 rounded-full">
+                    <img id="profilePic" alt="profilePic" />
+                </div>
+            </div>
+            <div class="grid grid-cols-1">
+                <p id="profileName" class="text-lg font-semibold"></p>
+                <kdb class="kbd">signed in : </kdb>
             </div>
         </div>
-        <div class="flex flex-col">
-            <div class="flex flex-row">
-                <p id="profileName" class="text-lg font-semibold"></p>
-                <kdb class="kbd ml-2 mt-1">signed in : </kdb>
-            </div>
-            <div></div>
+        <div class="navbar-end">
+            <button class="btn btn-square btn-ghost hover:outline-1 hover:bg-base-100">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                    <path
+                        d="M569 337C578.4 327.6 578.4 312.4 569 303.1L425 159C418.1 152.1 407.8 150.1 398.8 153.8C389.8 157.5 384 166.3 384 176L384 256L272 256C245.5 256 224 277.5 224 304L224 336C224 362.5 245.5 384 272 384L384 384L384 464C384 473.7 389.8 482.5 398.8 486.2C407.8 489.9 418.1 487.9 425 481L569 337zM224 160C241.7 160 256 145.7 256 128C256 110.3 241.7 96 224 96L160 96C107 96 64 139 64 192L64 448C64 501 107 544 160 544L224 544C241.7 544 256 529.7 256 512C256 494.3 241.7 480 224 480L160 480C142.3 480 128 465.7 128 448L128 192C128 174.3 142.3 160 160 160L224 160z" />
+                </svg>
+            </button>
         </div>
     </div>
 
@@ -40,24 +48,6 @@
             data-tally-src="https://tally.so/embed/31LarW?hideTitle=1&transparentBackground=1&dynamicHeight=1"
             loading="lazy" width="100%" height="351" frameborder="0" marginheight="0" marginwidth="0"
             title="P4P - Upload"></iframe>
-
-        <div id="first" class="card bg-base-100 card-lg w-xs md:w-lg lg:w-2xl xl:w-4xl border-black border">
-            <div class="card-body flex flex-col items-center">
-                <!--
-                    <fieldset class="fieldset">
-                        <legend class="fieldset-legend">Upload file</legend>
-                        <select id="first_select" title="select" class="select">
-                            <option disabled selected>Choose month</option>
-                            <option>month 1</option>
-                            <option>month 2</option>
-                            <option>month 3</option>
-                        </select>
-                        <input id="first_input" placeholder="input" type="file" class="file-input file-input-ghost file-input-md lg:file-input-lg" />
-                        <button id="first_submit" class="btn">submit</button>
-                    </fieldset>
-                -->
-            </div>
-        </div>
     </div>
 
     <div id="dock" class="dock bg-base-100 outline-2">
