@@ -10,5 +10,5 @@ app.listen(port, () => {
     console.log(`listening on ${port}`)
 })
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, "main")))
 app.use("/completeupload", express.static("completeupload"))
