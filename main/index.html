@@ -114,6 +114,7 @@
             signBtn.classList.remove("dock-active")
             iframe.style.display = "block"
             e.preventDefault()
+            loadMain.style.display = "block"
         })
 
         signBtn.addEventListener("click", function (e) {
@@ -144,7 +145,6 @@
                 const profile = await liff.getProfile()
                 profilePic.src = profile.pictureUrl
                 profileName.innerText = profile.displayName
-                loadMain.style.display = "block"
             } else {
                 liff.login()
             }
