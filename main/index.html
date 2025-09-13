@@ -100,16 +100,15 @@
         doctorDep = document.getElementById("doctorDep")
 
         statusBtn.addEventListener("click", function (e) {
-            loadMain.style.display = "none"
             this.classList.add("dock-active")
             uploadBtn.classList.remove("dock-active")
             signBtn.classList.remove("dock-active")
             iframe.style.display = "none"
             e.preventDefault()
+            loadMain.style.display = "none"
         })
 
         uploadBtn.addEventListener("click", function (e) {
-            loadMain.style.display = "block"
             this.classList.add("dock-active")
             statusBtn.classList.remove("dock-active")
             signBtn.classList.remove("dock-active")
@@ -118,15 +117,19 @@
         })
 
         signBtn.addEventListener("click", function (e) {
-            loadMain.style.display = "none"
             this.classList.add("dock-active")
             statusBtn.classList.remove("dock-active")
             uploadBtn.classList.remove("dock-active")
             iframe.style.display = "none"
             e.preventDefault()
+            loadMain.style.display = "none"
         })
 
         iframe.addEventListener("load", function () {
+            iframeDoc = iframe.contentDocument || iframe.contentWindow.document
+            if (iframeDoc.readyState == "complete") {
+                loadMain.style.display = "none"
+            }
             loadMain.style.display = "none"
         })
 
@@ -141,7 +144,7 @@
                 const profile = await liff.getProfile()
                 profilePic.src = profile.pictureUrl
                 profileName.innerText = profile.displayName
-
+                loadMain.style.display = "block"
             } else {
                 liff.login()
             }
