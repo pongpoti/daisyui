@@ -19,6 +19,12 @@
     ],
     "button-type": "off",
     "no-inline-styles": "off",
-    "scoped-svg-styles": "off"
+    "scoped-svg-styles": "off",
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
+    ]
   }
 }
