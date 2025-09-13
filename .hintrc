@@ -17,6 +17,8 @@
         ]
       }
     ],
-    "button-type": "off"
+    "button-type": "off",
+    "no-inline-styles": "off",
+    "scoped-svg-styles": "off"
   }
 }

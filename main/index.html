@@ -41,7 +41,7 @@
             </button>
             <dialog id="modal" class="modal">
                 <div class="modal-box">
-                    <p class="py-4">Do you want to log out ?</p>
+                    <p class="py-4 text-lg">Do you want to log out ?</p>
                     <div class="modal-action">
                         <form method="dialog">
                             <button class="btn" onclick="logOut()">Yes</button>
@@ -138,7 +138,7 @@
             if(liff.isLoggedIn()) {
                 liff.logout()
             }
-            window.open('','_self').close()
+            window.location.replace("https://skhp4p.deno.dev/logout")
         }
 
         const logInLIFF = async () => {
