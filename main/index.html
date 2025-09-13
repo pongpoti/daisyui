@@ -126,8 +126,8 @@
             loadMain.style.display = "none"
         })
 
-        iframe.addEventListener("load", function () {
-            if (iframe.contentDocument.readyState == "complete") {
+        iframe.addEventListener("load", function (e) {
+            if (iframe.contentWindow.document.readyState == "complete") {
                 loadMain.style.display = "none"
             }
             loadMain.style.display = "none"
