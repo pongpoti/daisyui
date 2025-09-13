@@ -29,7 +29,7 @@
             </div>
             <div class="grid grid-cols-1">
                 <p id="profileName" class="text-lg font-semibold"></p>
-                <kdb class="kbd kbd-sm">logged-in</kdb>
+                <kdb class="kbd kbd-sm">logged in</kdb>
             </div>
         </div>
         <div class="navbar-end">
@@ -105,7 +105,6 @@
             signBtn.classList.remove("dock-active")
             iframe.style.display = "none"
             e.preventDefault()
-            loadMain.style.display = "none"
         })
 
         uploadBtn.addEventListener("click", function (e) {
@@ -114,7 +113,6 @@
             signBtn.classList.remove("dock-active")
             iframe.style.display = "block"
             e.preventDefault()
-            loadMain.style.display = "block"
         })
 
         signBtn.addEventListener("click", function (e) {
@@ -123,14 +121,6 @@
             uploadBtn.classList.remove("dock-active")
             iframe.style.display = "none"
             e.preventDefault()
-            loadMain.style.display = "none"
-        })
-
-        iframe.addEventListener("load", function (e) {
-            if (iframe.contentWindow.document.readyState == "complete") {
-                loadMain.style.display = "none"
-            }
-            loadMain.style.display = "none"
         })
 
         const logInLIFF = async () => {
