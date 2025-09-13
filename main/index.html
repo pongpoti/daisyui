@@ -127,8 +127,7 @@
         })
 
         iframe.addEventListener("load", function () {
-            iframeDoc = iframe.contentDocument
-            if (iframeDoc.readyState == "complete") {
+            if (iframe.contentDocument.readyState == "complete") {
                 loadMain.style.display = "none"
             }
             loadMain.style.display = "none"
