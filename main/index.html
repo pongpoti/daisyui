@@ -10,7 +10,7 @@
     <style>
         #nav,
         #dock,
-        #loadMain,
+        #load_main,
         #iframe {
             display: none;
         }
@@ -24,11 +24,11 @@
         <div class="navbar-center">
             <div class="avatar pr-4">
                 <div class="w-16 rounded-full">
-                    <img id="profilePic" alt="profilePic" />
+                    <img id="profile_img" alt="profile_img" />
                 </div>
             </div>
             <div class="grid grid-cols-1">
-                <p id="profileName" class="text-lg font-semibold"></p>
+                <p id="profile_name" class="text-lg font-semibold"></p>
                 <kdb class="kbd kbd-sm">logged in</kdb>
             </div>
         </div>
@@ -54,8 +54,8 @@
     </div>
 
     <div id="content" class="bg-base-300 min-h-screen flex flex-col items-center justify-center">
-        <div id="loadInit" class="loading loading-dots loading-xl"></div>
-        <div id="loadMain" class="loading loading-dots loading-lg"></div>
+        <div id="load_init" class="loading loading-dots loading-xl"></div>
+        <div id="load_main" class="loading loading-dots loading-lg"></div>
         <iframe id="iframe"
             data-tally-src="https://tally.so/embed/31LarW?hideTitle=1&transparentBackground=1&dynamicHeight=1"
             loading="lazy" width="100%" height="351" frameborder="0" marginheight="0" marginwidth="0"
@@ -63,7 +63,7 @@
     </div>
 
     <div id="dock" class="dock bg-base-100 outline-2">
-        <button id="statusBtn">
+        <button id="button_status">
             <div class="flex">
                 <svg class="size-[1.4em] mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                     <path
@@ -72,7 +72,7 @@
                 <div>STATUS</div>
             </div>
         </button>
-        <button id="uploadBtn">
+        <button id="button_upload">
             <div class="flex">
                 <svg class="size-[1.4em] mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                     <path
@@ -81,13 +81,13 @@
                 <div>UPLOAD</div>
             </div>
         </button>
-        <button id="rewardBtn">
+        <button id="button_sign">
             <div class="flex">
                 <svg class="size-[1.4em] mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                     <path
-                        d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z" />
+                        d="M64.1 128C64.1 92.7 92.8 64 128.1 64L277.6 64C294.6 64 310.9 70.7 322.9 82.7L429.3 189.3C441.3 201.3 448 217.6 448 234.6L448 332.1L316 464.1L273.9 464.1L257.8 410.5C253.1 394.8 238.7 384.1 222.3 384.1C211 384.1 200.4 389.2 193.4 398L133.3 473C125 483.3 126.7 498.5 137 506.7C147.3 514.9 162.5 513.3 170.7 502.9L217.8 444.1L233 494.8C236 505 245.4 511.9 256 511.9L287.5 511.9C286.6 515 285.8 518.2 285.2 521.4L274.3 575.9L128.1 575.9C92.8 575.9 64.1 547.2 64.1 511.9L64.1 127.9zM272.1 122.5L272.1 216C272.1 229.3 282.8 240 296.1 240L389.6 240L272.1 122.5zM332.3 530.9C334.8 518.5 340.9 507.1 349.8 498.2L468.7 379.3L548.7 459.3L429.8 578.2C420.9 587.1 409.5 593.2 397.1 595.7L337.5 607.6C336.6 607.8 335.6 607.9 334.6 607.9C326.6 607.9 320 601.4 320 593.3C320 592.3 320.1 591.4 320.3 590.4L332.2 530.8zM600.1 407.9L571.3 436.7L491.3 356.7L520.1 327.9C542.2 305.8 578 305.8 600.1 327.9C622.2 350 622.2 385.8 600.1 407.9z" />
                 </svg>
-                <div>REWARD</div>
+                <div>SIGN</div>
             </div>
         </button>
     </div>
@@ -98,36 +98,35 @@
         const nav = document.getElementById("nav")
         const dock = document.getElementById("dock")
         const content = document.getElementById("content")
-        const loadInit = document.getElementById("loadInit")
-        const loadMain = document.getElementById("loadMain")
+        const load_init = document.getElementById("load_init")
+        const load_main = document.getElementById("load_main")
         const iframe = document.getElementById("iframe")
-        const statusBtn = document.getElementById("statusBtn")
-        const uploadBtn = document.getElementById("uploadBtn")
-        const rewardBtn = document.getElementById("rewardBtn")
-        const profilePic = document.getElementById("profilePic")
-        const profileName = document.getElementById("profileName")
-        const doctorDep = document.getElementById("doctorDep")
+        const button_status = document.getElementById("button_status")
+        const button_upload = document.getElementById("button_upload")
+        const button_sign = document.getElementById("button_sign")
+        const profile_img = document.getElementById("profile_img")
+        const profile_name = document.getElementById("profile_name")
 
-        statusBtn.addEventListener("click", function (e) {
+        button_status.addEventListener("click", function (e) {
             this.classList.add("dock-active")
-            uploadBtn.classList.remove("dock-active")
-            rewardBtn.classList.remove("dock-active")
+            button_upload.classList.remove("dock-active")
+            button_sign.classList.remove("dock-active")
             iframe.style.display = "none"
             e.preventDefault()
         })
 
-        uploadBtn.addEventListener("click", function (e) {
+        button_upload.addEventListener("click", function (e) {
             this.classList.add("dock-active")
-            statusBtn.classList.remove("dock-active")
-            rewardBtn.classList.remove("dock-active")
+            button_status.classList.remove("dock-active")
+            button_sign.classList.remove("dock-active")
             iframe.style.display = "block"
             e.preventDefault()
         })
 
-        rewardBtn.addEventListener("click", function (e) {
+        button_sign.addEventListener("click", function (e) {
             this.classList.add("dock-active")
-            statusBtn.classList.remove("dock-active")
-            uploadBtn.classList.remove("dock-active")
+            button_status.classList.remove("dock-active")
+            button_upload.classList.remove("dock-active")
             iframe.style.display = "none"
             e.preventDefault()
         })
@@ -142,14 +141,14 @@
         const logInLIFF = async () => {
             await liff.init({ liffId: "2007211330-ykKaQeJg" })
             if (liff.isLoggedIn()) {
-                loadInit.style.display = "none"
+                load_init.style.display = "none"
                 nav.style.display = "flex"
                 dock.style.display = "flex"
                 content.classList.remove("justify-center")
                 content.classList.add("pt-8", "md:pt-12", "lg:pt-16", "xl:pt-20")
                 const profile = await liff.getProfile()
-                profilePic.src = profile.pictureUrl
-                profileName.innerText = profile.displayName
+                profile_img.src = profile.pictureUrl
+                profile_name.innerText = profile.displayName
             } else {
                 liff.login()
             }
