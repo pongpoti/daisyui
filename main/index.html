@@ -95,68 +95,66 @@
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>var d = document, w = "https://tally.so/widgets/embed.js", v = function () { "undefined" != typeof Tally ? Tally.loadEmbeds() : d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function (e) { e.src = e.dataset.tallySrc })) }; if ("undefined" != typeof Tally) v(); else if (d.querySelector('script[src="' + w + '"]') == null) { var s = d.createElement("script"); s.src = w, s.onload = v, s.onerror = v, d.body.appendChild(s); }</script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const nav = document.getElementById("nav")
-            const dock = document.getElementById("dock")
-            const content = document.getElementById("content")
-            const loadInit = document.getElementById("loadInit")
-            const loadMain = document.getElementById("loadMain")
-            const iframe = document.getElementById("iframe")
-            const statusBtn = document.getElementById("statusBtn")
-            const uploadBtn = document.getElementById("uploadBtn")
-            const rewardBtn = document.getElementById("rewardBtn")
-            const profilePic = document.getElementById("profilePic")
-            const profileName = document.getElementById("profileName")
-            const doctorDep = document.getElementById("doctorDep")
+        const nav = document.getElementById("nav")
+        const dock = document.getElementById("dock")
+        const content = document.getElementById("content")
+        const loadInit = document.getElementById("loadInit")
+        const loadMain = document.getElementById("loadMain")
+        const iframe = document.getElementById("iframe")
+        const statusBtn = document.getElementById("statusBtn")
+        const uploadBtn = document.getElementById("uploadBtn")
+        const rewardBtn = document.getElementById("rewardBtn")
+        const profilePic = document.getElementById("profilePic")
+        const profileName = document.getElementById("profileName")
+        const doctorDep = document.getElementById("doctorDep")
 
-            statusBtn.addEventListener("click", function (e) {
-                this.classList.add("dock-active")
-                uploadBtn.classList.remove("dock-active")
-                rewardBtn.classList.remove("dock-active")
-                iframe.style.display = "none"
-                e.preventDefault()
-            })
-
-            uploadBtn.addEventListener("click", function (e) {
-                this.classList.add("dock-active")
-                statusBtn.classList.remove("dock-active")
-                rewardBtn.classList.remove("dock-active")
-                iframe.style.display = "block"
-                e.preventDefault()
-            })
-
-            rewardBtn.addEventListener("click", function (e) {
-                this.classList.add("dock-active")
-                statusBtn.classList.remove("dock-active")
-                uploadBtn.classList.remove("dock-active")
-                iframe.style.display = "none"
-                e.preventDefault()
-            })
-
-            function logOut() {
-                if (liff.isLoggedIn()) {
-                    liff.logout()
-                }
-                window.location.replace("https://skhp4p.deno.dev/logout")
-            }
-
-            const logInLIFF = async () => {
-                await liff.init({ liffId: "2007211330-ykKaQeJg" })
-                if (liff.isLoggedIn()) {
-                    loadInit.style.display = "none"
-                    nav.style.display = "flex"
-                    dock.style.display = "flex"
-                    content.classList.remove("justify-center")
-                    content.classList.add("pt-8", "md:pt-12", "lg:pt-16", "xl:pt-20")
-                    const profile = await liff.getProfile()
-                    profilePic.src = profile.pictureUrl
-                    profileName.innerText = profile.displayName
-                } else {
-                    liff.login()
-                }
-            }
-            logInLIFF();
+        statusBtn.addEventListener("click", function (e) {
+            this.classList.add("dock-active")
+            uploadBtn.classList.remove("dock-active")
+            rewardBtn.classList.remove("dock-active")
+            iframe.style.display = "none"
+            e.preventDefault()
         })
+
+        uploadBtn.addEventListener("click", function (e) {
+            this.classList.add("dock-active")
+            statusBtn.classList.remove("dock-active")
+            rewardBtn.classList.remove("dock-active")
+            iframe.style.display = "block"
+            e.preventDefault()
+        })
+
+        rewardBtn.addEventListener("click", function (e) {
+            this.classList.add("dock-active")
+            statusBtn.classList.remove("dock-active")
+            uploadBtn.classList.remove("dock-active")
+            iframe.style.display = "none"
+            e.preventDefault()
+        })
+
+        function logOut() {
+            if (liff.isLoggedIn()) {
+                liff.logout()
+            }
+            window.location.replace("https://skhp4p.deno.dev/logout")
+        }
+
+        const logInLIFF = async () => {
+            await liff.init({ liffId: "2007211330-ykKaQeJg" })
+            if (liff.isLoggedIn()) {
+                loadInit.style.display = "none"
+                nav.style.display = "flex"
+                dock.style.display = "flex"
+                content.classList.remove("justify-center")
+                content.classList.add("pt-8", "md:pt-12", "lg:pt-16", "xl:pt-20")
+                const profile = await liff.getProfile()
+                profilePic.src = profile.pictureUrl
+                profileName.innerText = profile.displayName
+            } else {
+                liff.login()
+            }
+        }
+        logInLIFF();
     </script>
 
 </body>
