@@ -14,5 +14,3 @@ app.use(express.static(path.join(__dirname, "main")))
 app.use("/completeupload", express.static("completeupload"))
 app.use("/logout", express.static("logout"))
 app.use("/otp", express.static("otp"))
-
-console.log(Deno.env.get("HOME"))
