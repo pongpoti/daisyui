@@ -29,8 +29,6 @@ async function fetchDataFromSupabase() {
   }
 }
 
-fetchDataFromSupabase();
-
 app.listen(port, () => {
     console.log(`listening on ${port}`);
 });
@@ -41,5 +39,5 @@ app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 
 app.get("/sapi", (req, res) => {
-    console.log(fetchDataFromSupabase());
+    res.json(fetchDataFromSupabase());
 });
