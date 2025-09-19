@@ -13,8 +13,8 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 async function fetchDataFromSupabase() {
   try {
     const { data, error } = await supabase
-      .from('your_table_name') // Replace with your table name
-      .select('*'); // Select all columns
+      .from("src") // Replace with your table name
+      .select(c); // Select all columns
 
     if (error) {
       console.error('Error fetching data:', error.message);
@@ -40,5 +40,6 @@ app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 
 app.get("/sapi", (req, res) => {
-    console.log(fetchDataFromSupabase());
+    const jsonData = fetchDataFromSupabase();
+    res.json(jsonData);
 });
