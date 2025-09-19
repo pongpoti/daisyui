@@ -9,9 +9,26 @@ const __dirname = import.meta.dirname;
 const supabaseUrl = Deno.env.get("supabaseUrl");
 const supabaseKey = Deno.env.get("supabaseKey");
 const supabase = createClient(supabaseUrl, supabaseKey);
-const { data, error } = await supabase
-    .from("src")
-    .select()
+
+async function fetchDataFromSupabase() {
+  try {
+    const { data, error } = await supabase
+      .from('your_table_name') // Replace with your table name
+      .select('*'); // Select all columns
+
+    if (error) {
+      console.error('Error fetching data:', error.message);
+      return null;
+    }
+
+    console.log('Fetched data:', data);
+    return data;
+  } catch (error) {
+    console.error('An unexpected error occurred:', error);
+    return null;
+  }
+}
+
 
 app.listen(port, () => {
     console.log(`listening on ${port}`);
@@ -23,6 +40,5 @@ app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 
 app.get("/sapi", (req, res) => {
-    console.log(data);
-    res.json(data);
+    console.log(fetchDataFromSupabase());
 });
