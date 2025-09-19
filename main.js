@@ -15,7 +15,7 @@ app.use("/completeupload", express.static("completeupload"))
 app.use("/logout", express.static("logout"))
 app.use("/verify", express.static("verify"))
 
-app.get("/sapi", (req, res)) {
+app.get("/sapi", (req, res) => {
     console.log(Deno.env.get(supabaseUrl))
     console.log(Deno.env.get(supabaseKey))
-}
+})
