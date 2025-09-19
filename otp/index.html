@@ -17,7 +17,8 @@
             <div class="card-body items-center text-center py-8 md:py-12 lg:py-12 xl:py-12">
                 <header class="mb-6 md:mb-6 lg:mb-8 lg:mb-8">
                     <h1 class="text-xl md:text-xl lg:text-2xl xl:text-2xl font-bold mb-1">Mobile Phone Verification</h1>
-                    <p id="verifySection_subtitle" class="text-md md:text-md lg:text-lg xl:text-lg text-slate-500">Please enter your phone number
+                    <p id="verifySection_subtitle" class="text-md md:text-md lg:text-lg xl:text-lg text-slate-500">
+                        Please enter your phone number
                     </p>
                 </header>
                 <div>
@@ -86,7 +87,9 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script>
+
         const phoneNumber = document.getElementsByName("phonenumber-input")
         const otpNumber = document.getElementsByName("otpnumber-input")
 
@@ -149,6 +152,11 @@
                 }
             })
         })
+
+        var typed = new Typed('#verifySection_subtitle', {
+            strings: ["Please enter your phone number"],
+            typeSpeed: 50,
+        });
 
     </script>
 </body>
