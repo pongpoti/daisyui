@@ -21,7 +21,7 @@ async function fetchDataFromSupabase() {
       return null;
     }
 
-    //console.log('Fetched data:', data);
+    console.log('Fetched data:', data);
     return data;
   } catch (error) {
     console.error('An unexpected error occurred:', error);
