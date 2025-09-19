@@ -14,7 +14,7 @@ async function fetchDataFromSupabase() {
   try {
     const { data, error } = await supabase
       .from("src") // Replace with your table name
-      .select(c); // Select all columns
+      .select(); // Select all columns
 
     if (error) {
       console.error('Error fetching data:', error.message);
