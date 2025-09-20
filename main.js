@@ -2,14 +2,14 @@ import express from "npm:express";
 import process from "node:process";
 import path from "node:path";
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { create } from "node:domain";
 
 const app = express();
 const port = process.env.PORT || 3000;
 const __dirname = import.meta.dirname;
-const supabase = createClient(
-  "https://xixyqsojpqoyvabcvuop.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpeHlxc29qcHFveXZhYmN2dW9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgxNjY3NzYsImV4cCI6MjA3Mzc0Mjc3Nn0.DDRfvwiaLGXTKtrus3vz0OvdEnvWD360GLx699uIQi4",
-);
+const URL = Deno.env.get("URL");
+const KEY = Deno.env.get("KEY");
+const supabase = createClient(URL, KEY);
 
 app.listen(port, () => {
   console.log(`listening on ${port}`);
