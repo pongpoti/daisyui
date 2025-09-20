@@ -151,7 +151,10 @@
                 profile_img.src = profile.pictureUrl
                 profile_name.innerText = profile.displayName
                 axios.get("https://skhp4p.deno.dev/sapi")
-                    .then((response) => console.log(JSON.stringify(response.data)))
+                    .then((response) => {
+                        let array = response.data;
+                        console.log(array[0]);
+                    })
                     .catch((error) => console.error(error));
             } else {
                 liff.login()
