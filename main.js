@@ -2,7 +2,6 @@ import express from "npm:express";
 import process from "node:process";
 import path from "node:path";
 import { createClient } from "npm:@supabase/supabase-js@2";
-import { create } from "node:domain";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -20,7 +19,7 @@ app.use("/uploaded", express.static("uploaded"));
 app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 
-app.get("/sapi", (req, res) => {
+app.get("/sapi", (_, res) => {
   supabase.from("src").select()
     .then((response) => {
       res.json(response.data);

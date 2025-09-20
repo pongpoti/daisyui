@@ -149,6 +149,9 @@
                 const profile = await liff.getProfile()
                 profile_img.src = profile.pictureUrl
                 profile_name.innerText = profile.displayName
+                fetch("https://skhp4p.deno.dev/sapi")
+                    .then((response) => console.log(response))
+                    .catch((error) => console.error(error));
             } else {
                 liff.login()
             }
