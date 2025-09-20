@@ -18,6 +18,7 @@ app.use(express.static(path.join(__dirname, "main")));
 app.use("/uploaded", express.static("uploaded"));
 app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
+app.use("/insert", express.static("insert"));
 
 app.get("/sapi-verify", (req, res) => {
   const phoneNumber = "0896678722";
