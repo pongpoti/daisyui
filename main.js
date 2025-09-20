@@ -20,7 +20,7 @@ app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 
 app.get("/sapi-verify", (req, res) => {
-  const phoneNumber = "0896678722";
+  const phoneNumber = "0896678721";
   supabase.from("src").select().eq("phoneNumber", phoneNumber)
     .then((response) => {
       res.json(response.data);
