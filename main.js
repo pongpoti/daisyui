@@ -34,7 +34,7 @@ app.listen(port, () => {
 });
 
 app.use(express.static(path.join(__dirname, "main")));
-app.use("/completeupload", express.static("completeupload"));
+app.use("/uploaded", express.static("uploaded"));
 app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 
