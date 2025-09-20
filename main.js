@@ -6,8 +6,8 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 const app = express();
 const port = process.env.PORT || 3000;
 const __dirname = import.meta.dirname;
-const supabaseUrl = Deno.env.get("supabaseUrl");
-const supabaseKey = Deno.env.get("supabaseKey");
+const supabaseUrl = Deno.env.get("URL");
+const supabaseKey = Deno.env.get("KEY");
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function fetchDataFromSupabase() {
