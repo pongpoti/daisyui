@@ -39,5 +39,6 @@ app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 
 app.get("/sapi", (req, res) => {
-    res.send(fetchDataFromSupabase());
+    let list = fetchDataFromSupabase();
+    console.log("list : " + list);
 });
