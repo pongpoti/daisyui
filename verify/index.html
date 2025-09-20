@@ -13,19 +13,22 @@
 
 <body>
     <div id="content" class="bg-base-300 min-h-screen flex items-center justify-center">
-        <div id="verifySection_card" class="card bg-base-100 card-lg w-xs md:w-lg lg:w-2xl xl:w-4xl shadow-sm">
+        <div id="verify_card" class="card bg-base-100 card-lg w-xs md:w-lg lg:w-2xl xl:w-4xl shadow-sm">
             <div class="card-body items-center text-center py-8 md:py-12 lg:py-12 xl:py-12">
                 <header class="mb-6 md:mb-6 lg:mb-8 lg:mb-8">
                     <h1 class="text-xl md:text-xl lg:text-2xl xl:text-2xl font-bold mb-1">Mobile Phone Verification</h1>
-                    <p id="verifySection_subtitle" class="text-md md:text-md lg:text-lg xl:text-lg text-slate-500">
-                        Please enter your phone number
+                    <p class="text-md md:text-md lg:text-lg xl:text-lg text-slate-500">
+                        <span id="verify_subtitle_phonenumber"></span>
+                    </p>
+                    <p class="text-md md:text-md lg:text-lg xl:text-lg text-slate-500">
+                        <span id="verify_subtitle_otpnumber"></span>
                     </p>
                 </header>
                 <div>
-                    <form id="verifySection_phonenumber" class="flex items-center justify-center gap-1">
+                    <form id="verify_phonenumber" class="flex items-center justify-center gap-1">
                         <input name="phonenumber-input" type="tel"
                             class="w-6 md:w-10 lg:w-12 xl:w-14 h-8 md:h-12 lg:h-14 xl:h-16 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-                            maxlength="1" autofocus/>
+                            maxlength="1" autofocus />
                         <input name="phonenumber-input" type="tel"
                             class="w-6 md:w-10 lg:w-12 xl:w-14 h-8 md:h-12 lg:h-14 xl:h-16 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                             maxlength="1" />
@@ -54,7 +57,7 @@
                             class="w-6 md:w-10 lg:w-12 xl:w-14 h-8 md:h-12 lg:h-14 xl:h-16 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                             maxlength="1" />
                     </form>
-                    <form id="verifySection_otpnumber" class="flex items-center justify-center gap-4">
+                    <form id="verify_otpnumber" class="flex items-center justify-center gap-4">
                         <input name="otpnumber-input" type="tel"
                             class="w-8 md:w-10 lg:w-12 xl:w-14 h-10 md:h-12 lg:h-14 xl:h-16 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                             maxlength="1" autofocus />
@@ -69,15 +72,22 @@
                             maxlength="1" />
                     </form>
                     <div class="mt-8"></div>
-                    <button id="verifySection_button_sendotp" class="btn btn-neutral btn-block">send OTP</button>
-                    <button id="verifySection_button_load" class="btn btn-block" disabled>
+                    <button id="verify_button_sendotp" class="btn btn-neutral btn-block">send OTP</button>
+                    <button id="verify_button_load" class="btn btn-block" disabled>
                         <span class="loading loading-dots loading-md"></span>
                     </button>
-                    <button id="verifySection_button_verifyotp" class="btn btn-neutral btn-block">verify OTP</button>
+                    <button id="verify_button_verifyotp" class="btn btn-neutral btn-block">verify OTP</button>
                     <div class="mt-4"></div>
-                    <kbd id="verifySection_kbd_invalid" class="kbd kbd-lg">
-                        <span class="text-red-500 font-semibold">Invalid OTP</span>
-                    </kbd>
+                    <div id="verify_kbd_phonenumber_invalid">
+                        <kbd class="kbd kbd-lg">
+                            <span class="text-red-500 font-semibold">Incorrect phone number</span>
+                        </kbd>
+                    </div>
+                    <div id="verify_kbd_otpnumber_invalid">
+                        <kbd class="kbd kbd-lg">
+                            <span class="text-red-500 font-semibold">Incorrect OTP</span>
+                        </kbd>
+                    </div>
                     <div class="mt-8"></div>
                     <p class="text-center text-slate-500">Didn't receive code ?
                         <a class="font-bold text-slate-500 hover:text-slate-600" href="#0">Resend</a>
@@ -87,7 +97,17 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script>
+
+        const typed1 = new Typed("#verify_subtitle_phonenumber", {
+            strings: ["Please enter your mobile phone"],
+            typeSpeed: 50
+        })
+        const typed2 = new Typed("#verify_subtitle_otpnumber", {
+            strings: ["OTP code has been sent to your SMS"],
+            typeSpeed: 50
+        })
 
         const phoneNumber = document.getElementsByName("phonenumber-input")
         const otpNumber = document.getElementsByName("otpnumber-input")
@@ -110,17 +130,16 @@
             })
             input.addEventListener("paste", (e) => {
                 e.preventDefault()
-                /*
-                const pastedData = e.clipboardData.getData("number").trim();
-                if (pastedData.length === phoneNumber.length && /^\d+$/.test(pastedData)) {
-                    for (let i = 0; i < phoneNumber.length; i++) {
+                const regex = /^(0[689]{1})+([0-9]{8})+$/
+                const pastedData = e.clipboardData.getData("text");
+                if (regex.test(pastedData)) {
+                    for (i = 0; i < phoneNumber.length; i++) {
                         phoneNumber[i].value = pastedData[i]
                     }
-                    phoneNumber[phoneNumber.length - 1].focus()
-                    const otpCode = Array.from(phoneNumber).map(field => field.value).join("")
+                    phoneNumber[phoneNumber.length - 1].focus();
+                    const number = Array.from(phoneNumber).map(field => field.value).join("")
                     console.log("phone number : " + number)
                 }
-                */
             })
         })
 
@@ -132,7 +151,7 @@
                 }
                 if (Array.from(otpNumber).every(field => field.value.length === 1)) {
                     const number = Array.from(otpNumber).map(field => field.value).join("")
-                    console.log("phone number : " + number)
+                    console.log("otp number : " + number)
                 }
             })
             input.addEventListener("keydown", (e) => {
@@ -142,17 +161,16 @@
             })
             input.addEventListener("paste", (e) => {
                 e.preventDefault()
-                /*
-                const pastedData = e.clipboardData.getData("number").trim();
-                if (pastedData.length === otpNumber.length && /^\d+$/.test(pastedData)) {
-                    for (let i = 0; i < otpNumber.length; i++) {
+                const regex = /^\d{4}$/
+                const pastedData = e.clipboardData.getData("text");
+                if (regex.test(pastedData)) {
+                    for (i = 0; i < otpNumber.length; i++) {
                         otpNumber[i].value = pastedData[i]
                     }
-                    otpNumber[otpNumber.length - 1].focus()
-                    const otpCode = Array.from(otpNumber).map(field => field.value).join("")
+                    otpNumber[otpNumber.length - 1].focus();
+                    const number = Array.from(otpNumber).map(field => field.value).join("")
                     console.log("otp number : " + number)
                 }
-                */
             })
         })
 
