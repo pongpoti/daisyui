@@ -14,7 +14,7 @@ async function fetchDataFromSupabase() {
   try {
     const { data, error } = await supabase
       .from("src") // Replace with your table name
-      .select(); // Select all columns
+      .select("*"); // Select all columns
 
     if (error) {
       console.error('Error fetching data:', error.message);
@@ -29,6 +29,8 @@ async function fetchDataFromSupabase() {
   }
 }
 
+fetchDataFromSupabase()
+
 app.listen(port, () => {
     console.log(`listening on ${port}`);
 });
@@ -39,6 +41,4 @@ app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 
 app.get("/sapi", (req, res) => {
-    let list = fetchDataFromSupabase();
-    console.log("list : " + list);
 });
