@@ -19,8 +19,9 @@ app.use("/uploaded", express.static("uploaded"));
 app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 
-app.get("/sapi", (_, res) => {
-  supabase.from("src").select()
+app.get("/sapi-verify", (req, res) => {
+  const phoneNumber = "0896678722";
+  supabase.from("src").select().eq("phoneNumber", phoneNumber)
     .then((response) => {
       res.json(response.data);
     })
