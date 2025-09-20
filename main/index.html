@@ -152,8 +152,10 @@
                 profile_name.innerText = profile.displayName
                 axios.get("https://skhp4p.deno.dev/sapi")
                     .then((response) => {
-                        let array = response.data;
+                        let array = JSON.parse(response.data);
+                        console.log(array);
                         console.log(array[0]);
+                        console.log(array[0][1]);
                     })
                     .catch((error) => console.error(error));
             } else {
