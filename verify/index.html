@@ -131,7 +131,7 @@
             input.addEventListener("paste", (e) => {
                 e.preventDefault()
                 const regex = /^(0[689]{1})+([0-9]{8})+$/
-                const pastedData = e.clipboardData.getData("text");
+                const pastedData = e.clipboardData.getData("text").trim();
                 if (regex.test(pastedData)) {
                     for (i = 0; i < phoneNumber.length; i++) {
                         phoneNumber[i].value = pastedData[i]
@@ -162,7 +162,7 @@
             input.addEventListener("paste", (e) => {
                 e.preventDefault()
                 const regex = /^\d{4}$/
-                const pastedData = e.clipboardData.getData("text");
+                const pastedData = e.clipboardData.getData("text").trim();
                 if (regex.test(pastedData)) {
                     for (i = 0; i < otpNumber.length; i++) {
                         otpNumber[i].value = pastedData[i]
