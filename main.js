@@ -6,33 +6,13 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 const app = express();
 const port = process.env.PORT || 3000;
 const __dirname = import.meta.dirname;
-const supabaseUrl = Deno.env.get("URL");
-const supabaseKey = Deno.env.get("KEY");
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-async function fetchDataFromSupabase() {
-  try {
-    const { data, error } = await supabase
-      .from("src") // Replace with your table name
-      .select("*"); // Select all columns
-
-    if (error) {
-      console.error('Error fetching data:', error.message);
-      return null;
-    }
-
-    console.log('Fetched data:', data);
-    return data;
-  } catch (error) {
-    console.error('An unexpected error occurred:', error);
-    return null;
-  }
-}
-
-fetchDataFromSupabase()
+const supabase = createClient(
+  "https://xixyqsojpqoyvabcvuop.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpeHlxc29qcHFveXZhYmN2dW9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgxNjY3NzYsImV4cCI6MjA3Mzc0Mjc3Nn0.DDRfvwiaLGXTKtrus3vz0OvdEnvWD360GLx699uIQi4",
+);
 
 app.listen(port, () => {
-    console.log(`listening on ${port}`);
+  console.log(`listening on ${port}`);
 });
 
 app.use(express.static(path.join(__dirname, "main")));
@@ -41,4 +21,9 @@ app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 
 app.get("/sapi", (req, res) => {
+  supabase.from("src").select()
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((error) => console.error(error));
 });
