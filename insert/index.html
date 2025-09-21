@@ -23,10 +23,10 @@
                     <option disabled selected>select ..</option>
                 </select>
                 <div class="mt-2"></div>
-                <div class="flex items-center justify-center gap-1">
+                <div class="flex items-center justify-center gap-2">
                     <input name="phonenumber-input" type="tel"
                         class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-                        maxlength="1" autofocus />
+                        maxlength="1" />
                     <input name="phonenumber-input" type="tel"
                         class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                         maxlength="1" />
@@ -34,10 +34,7 @@
                         class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                         maxlength="1" />
                 </div>
-                <div class="flex items-center justify-center gap-1">
-                    <input name="phonenumber-input" type="tel"
-                        class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-                        maxlength="1" autofocus />
+                <div class="flex items-center justify-center gap-2">
                     <input name="phonenumber-input" type="tel"
                         class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                         maxlength="1" />
@@ -46,7 +43,12 @@
                         maxlength="1" />
                     <input name="phonenumber-input" type="tel"
                         class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-                        maxlength="1" autofocus />
+                        maxlength="1" />
+                </div>
+                <div class="flex items-center justify-center gap-2">
+                    <input name=" phonenumber-input" type="tel"
+                        class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+                        maxlength="1" />
                     <input name="phonenumber-input" type="tel"
                         class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                         maxlength="1" />
@@ -73,27 +75,34 @@
         const load = document.getElementById("load")
         const saved = document.getElementById("saved")
 
-        async function createOptions() {
-            console.log("createOptions()")
-            const database = await retrieveSupabaseData()
-            for (i = 0; i < database.length; i++) {
-                let option = document.createElement("option")
-                option.innerText = database[i].name
-                option.value = database[i].name
-                select.appendChild(option)
-            }
-        }
-
         async function retrieveSupabaseData() {
             console.log("retrieveSupabaseData()")
             const result = await axios.get("https://skhp4p.deno.dev/sapi-select-name")
             return result.data
         }
 
+        async function createOptions() {
+            console.log("createOptions()")
+            const database = await retrieveSupabaseData()
+            for (i = 0; i < database.length; i++) {
+                let option = document.createElement("option")
+                option.innerText = database[i].name
+                option.value = database[i].id
+                select.appendChild(option)
+            }
+        }
+
+        async function uploadPhoneNumber(number){
+            if (select.value != "") {
+
+            }
+        }
+
         createOptions()
 
         select.addEventListener("change", (e) => {
             console.log("select element value : " + select.value)
+            phoneNumber[0].focus()
         })
 
         phoneNumber.forEach((input, index) => {

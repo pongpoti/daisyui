@@ -21,11 +21,16 @@ app.use("/verify", express.static("verify"));
 app.use("/insert", express.static("insert"));
 
 app.get("/sapi-select-name", (req, res) => {
-  supabase.from("src").select("name").order("name", { ascending: true })
+  supabase.from("src").select("id, name").order("id", { ascending: true })
     .then((response) => {
       res.json(response.data);
     })
     .catch((error) => console.error(error));
+});
+
+app.get("/sapi-insert-phonenumber", (req, res) => {
+  const phoneNumber = req.query.phonenumber;
+
 });
 
 app.get("/sapi-verify", (req, res) => {
