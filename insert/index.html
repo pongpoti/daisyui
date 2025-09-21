@@ -8,6 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
+        #load,
+        #saved {
+            display: none;
+        }
     </style>
 </head>
 
@@ -15,13 +19,13 @@
     <div class="bg-base-300 min-h-screen flex items-start justify-center">
         <div class="card bg-base-100 card-lg w-xs mt-8 shadow-sm">
             <div class="card-body text-center py-8">
-                <select class="select">
+                <select id="select" class="select">
                     <option disabled selected>select ..</option>
                     <option>option 1</option>
                     <option>option 2</option>
                 </select>
                 <div class="mt-2"></div>
-                <form id="verify_phonenumber" class="flex items-center justify-center gap-1">
+                <div class="flex items-center justify-center gap-1">
                     <input name="phonenumber-input" type="tel"
                         class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                         maxlength="1" autofocus />
@@ -31,17 +35,8 @@
                     <input name="phonenumber-input" type="tel"
                         class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                         maxlength="1" />
-                </form>
-                <form id="verify_phonenumber" class="flex items-center justify-center gap-1">
-                    <input name="phonenumber-input" type="tel"
-                        class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-                        maxlength="1" autofocus />
-                    <input name="phonenumber-input" type="tel"
-                        class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-                        maxlength="1" />
-                    <input name="phonenumber-input" type="tel"
-                        class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-                        maxlength="1" />
+                </div>
+                <div class="flex items-center justify-center gap-1">
                     <input name="phonenumber-input" type="tel"
                         class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                         maxlength="1" autofocus />
@@ -53,9 +48,77 @@
                         maxlength="1" />
                     <input name="phonenumber-input" type="tel"
                         class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+                        maxlength="1" autofocus />
+                    <input name="phonenumber-input" type="tel"
+                        class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                         maxlength="1" />
-                </form>
+                    <input name="phonenumber-input" type="tel"
+                        class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+                        maxlength="1" />
+                    <input name="phonenumber-input" type="tel"
+                        class="w-10 h-14 text-center text-2xl font-extrabold text-slate-900 bg-slate-100 border border-transparent hover:border-slate-200 appearance-none rounded outline-none focus:bg-white focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+                        maxlength="1" />
+                </div>
+                <div class="mt-2"></div>
+                <div>
+                    <div id="load" class="loading loading-dots loading-xl"></div>
+                    <div id="saved"><kbd class="kbd kbd-xl">saved</kbd></div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const select = document.getElementById("select")
+        const phoneNumber = document.getElementsByName("phonenumber-input")
+        const load = document.getElementById("load")
+        const saved = document.getElementById("saved")
+
+        async function createOptions() {
+            console.log("createOptions()")
+            const database = await retrieveSupabaseData()
+            console.log(database)
+        }
+
+        async function retrieveSupabaseData() {
+            console.log("retrieveSupabaseData()")
+            const result = await axios.get("https://skhp4p.deno.dev/sapi")
+            return result.data
+        }
+
+        createOptions()
+
+        phoneNumber.forEach((input, index) => {
+            input.addEventListener("input", (e) => {
+                input.value = input.value.replace(/[^0-9]/g, "")
+                if (e.target.value.length === 1 && index < phoneNumber.length - 1) {
+                    phoneNumber[index + 1].focus()
+                }
+                if (Array.from(phoneNumber).every(field => field.value.length === 1)) {
+                    const number = Array.from(phoneNumber).map(field => field.value).join("")
+                    console.log("phone number : " + number)
+                }
+            })
+            input.addEventListener("keydown", (e) => {
+                if (e.key === "Backspace" && e.target.value.length === 0 && index > 0) {
+                    phoneNumber[index - 1].focus()
+                }
+            })
+            input.addEventListener("paste", (e) => {
+                e.preventDefault()
+                const regex = /^(0[689]{1})+([0-9]{8})+$/
+                const pastedData = e.clipboardData.getData("text").trim();
+                if (regex.test(pastedData)) {
+                    for (i = 0; i < phoneNumber.length; i++) {
+                        phoneNumber[i].value = pastedData[i]
+                    }
+                    phoneNumber[phoneNumber.length - 1].focus();
+                    const number = Array.from(phoneNumber).map(field => field.value).join("")
+                    console.log("phone number : " + number)
+                }
+            })
+        })
+
+    </script>
 </body>
