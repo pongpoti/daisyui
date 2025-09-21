@@ -21,7 +21,7 @@ app.use("/verify", express.static("verify"));
 app.use("/insert", express.static("insert"));
 
 app.get("/sapi", (req, res) => {
-  supabase.from("src").select()
+  supabase.from("src").select("name").order("name", { ascending: false })
     .then((response) => {
       res.json(response.data);
     })
