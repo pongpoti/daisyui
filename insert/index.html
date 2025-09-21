@@ -92,9 +92,13 @@
             }
         }
 
-        async function uploadPhoneNumber(number){
-            if (select.value != "") {
-
+        function uploadPhoneNumber(id, phoneNumber) {
+            console.log("uploadPhoneNumber()")
+            if (select.value !== "") {
+                let query = "?id=" + id + "?phonenumber=" + phoneNumber
+                axios.get("https://skhp4p.deno.dev/sapi-insert-phonenumber" + query)
+                    .then((response) => console.log(response.data))
+                    .catch((error) => console.error(error))
             }
         }
 
@@ -114,6 +118,7 @@
                 if (Array.from(phoneNumber).every(field => field.value.length === 1)) {
                     const number = Array.from(phoneNumber).map(field => field.value).join("")
                     console.log("phone number : " + number)
+                    uploadPhoneNumber(select.value, number)
                 }
             })
             input.addEventListener("keydown", (e) => {
@@ -132,6 +137,7 @@
                     phoneNumber[phoneNumber.length - 1].focus();
                     const number = Array.from(phoneNumber).map(field => field.value).join("")
                     console.log("phone number : " + number)
+                    uploadPhoneNumber(select.value, number)
                 }
             })
         })

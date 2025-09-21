@@ -22,15 +22,16 @@ app.use("/insert", express.static("insert"));
 
 app.get("/sapi-select-name", (req, res) => {
   supabase.from("src").select("id, name").order("id", { ascending: true })
-    .then((response) => {
-      res.json(response.data);
-    })
+    .then((response) => res.json(response.data))
     .catch((error) => console.error(error));
 });
 
 app.get("/sapi-insert-phonenumber", (req, res) => {
+  const id = req.query.id;
   const phoneNumber = req.query.phonenumber;
-
+  supabase.from("src").upsert({ id: id, phoneNumber: phoneNumber }).select()
+    .then((response) => res.json(response.data))
+    .catch((error) => console.error(error));
 });
 
 app.get("/sapi-verify", (req, res) => {
