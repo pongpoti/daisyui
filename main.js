@@ -20,8 +20,8 @@ app.use("/logout", express.static("logout"));
 app.use("/verify", express.static("verify"));
 app.use("/insert", express.static("insert"));
 
-app.get("/sapi-select-name", (req, res) => {
-  supabase.from("src").select("id, name").order("id", { ascending: true })
+app.get("/sapi-select-all", (req, res) => {
+  supabase.from("src").select().order("id", { ascending: true })
     .then((response) => res.json(response.data))
     .catch((error) => console.error(error));
 });
