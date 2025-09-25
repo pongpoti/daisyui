@@ -8,6 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
+        #verify_subtitle_otpnumber, #verify_otpnumber, #verify_button_load, #verify_button_verifyotp, #verify_kbd_phonenumber_invalid, #verify_kbd_otpnumber_invalid {
+            display: none;
+        }
     </style>
 </head>
 
@@ -102,7 +105,15 @@
 
         const phoneNumber = document.getElementsByName("phonenumber-input")
         const otpNumber = document.getElementsByName("otpnumber-input")
+        const verify_subtitle_otpnumber = document.getElementById("verify_subtitle_otpnumber")
+        const verify_subtitle_phonenumber = document.getElementById("verify_subtitle_phonenumber")
+        const verify_phonenumber = document.getElementById("verify_phonenumber")
+        const verify_otpnumber = document.getElementById("verify_otpnumber")
         const verify_button_sendotp = document.getElementById("verify_button_sendotp")
+        const verify_button_load = document.getElementById("verify_button_load")
+        const verify_button_verifyotp = document.getElementById("verify_button_verifyotp")
+        const verify_kbd_phonenumber_invalid = document.getElementById("verify_kbd_phonenumber_invalid")
+        const verify_kbd_otpnumber_invalid = document.getElementById("verify_kbd_otpnumber_invalid")
 
         let number = "";
 
@@ -175,6 +186,10 @@
                         let result = response.data;
                         if (result.length !== 0) {
                             console.log("matched");
+                            verify_kbd_phonenumber_invalid.style.display = "none";
+                        } else {
+                            console.log("not matched");
+                            verify_kbd_phonenumber_invalid.style.display = "block";
                         }
                     })
                     .catch((error) => console.error(error));
