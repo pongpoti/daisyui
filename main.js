@@ -41,7 +41,7 @@ app.get("/sapi-insert-phonenumber", (req, res) => {
 });
 
 app.get("/sapi-verify", (req, res) => {
-  const phoneNumber = "0896678722";
+  const phoneNumber = req.query.phonenumber;
   supabase.from("src").select().eq("phoneNumber", phoneNumber)
     .then((response) => {
       res.json(response.data);
