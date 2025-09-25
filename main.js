@@ -26,6 +26,12 @@ app.get("/sapi-select-all", (req, res) => {
     .catch((error) => console.error(error));
 });
 
+app.get("/sapi-select-name", (req, res) => {
+  supabase.from("src").select("id, name").order("id", { ascending: true })
+    .then((response) => res.json(response.data))
+    .catch((error) => console.error(error));
+});
+
 app.get("/sapi-insert-phonenumber", (req, res) => {
   const id = req.query.id;
   const phoneNumber = req.query.phonenumber;
